@@ -1,7 +1,6 @@
 # python3
 
 import discord
-import time
 
 import cogs.channel as ch
 
@@ -34,11 +33,8 @@ async def on_guild_join(guild):
     notifyChannel = discord.utils.get(guild.text_channels, name="vc-notify")
 
     if notifyChannel == None:
-        notifyChannel = await guild.create_text_channel("vc-notify")
         notifyCategory = await guild.create_category("Notify")
-
-        await notifyChannel.edit(categoty = notifyCategory)
-        time.sleep(1)
+        notifyChannel = await guild.create_text_channel("vc-notify",categoty = notifyCategory)
 
     await notifyChannel.send("Hello!!")
 
