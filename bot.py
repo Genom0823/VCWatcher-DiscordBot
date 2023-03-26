@@ -37,7 +37,7 @@ async def on_voice_state_update(member, before, after):
             text = f"{now}: {member.name} が {before.channel}　から退室しました"
         
 
-        await notifyChannel.send(notifyEmbed)
+        await notifyChannel.send(embed = notifyEmbed)
 
 
 @client.event
