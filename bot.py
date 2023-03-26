@@ -29,16 +29,15 @@ async def on_voice_state_update(member, before, after):
         if after.channel != None:
 
             text = f"{member.name} が {after.channel}に入室しました"
-            notifyEmbed = discord.Embed( title="入室通知", color=0x00ff00, description=text )
-            notifyEmbed.add_field( name = "日時", value = now )
+            notifyEmbed = discord.Embed(title="入室通知", color=0x00ff00, description=text, timestamp=datetime.now())
             notifyEmbed.set_thumbnail(url=member.avatar)
 
 
         elif after.channel == None:
 
             text = f"{member.name} が {before.channel}から退室しました"
-            notifyEmbed = discord.Embed( title="退室通知", color=0xff0000, description=text )
-            notifyEmbed.add_field( name = "日時", value = now )
+            notifyEmbed = discord.Embed(title="退室通知", color=0xff0000, description=text, timestamp=datetime.now())
+            notifyEmbed.set_thumbnail(url=member.avatar)
             
         
         await notifyChannel.send(embed = notifyEmbed)
