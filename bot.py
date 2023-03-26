@@ -1,6 +1,7 @@
 # python3
 
 import discord
+import time
 
 import cogs.channel as ch
 
@@ -37,6 +38,7 @@ async def on_guild_join(guild):
         notifyCategory = await guild.create_category("Notify")
 
         await notifyChannel.edit(categoty = notifyCategory)
+        time.sleep(1)
 
     await notifyChannel.send("Hello!!")
 
