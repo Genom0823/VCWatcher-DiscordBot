@@ -34,7 +34,7 @@ async def on_guild_join(guild):
 
     if notifyChannel == None:
         notifyCategory = await guild.create_category("Notify")
-        notifyChannel = await guild.create_text_channel("vc-notify",categoty = notifyCategory)
+        notifyChannel = await guild.create_text_channel("vc-notify", category = notifyCategory)
 
     await notifyChannel.send("Hello!!")
 
