@@ -28,7 +28,7 @@ async def on_voice_state_update(member, before, after):
         
         if after.channel != None:
 
-            notifyEmbed = discord.Embed(timestamp=datetime.now())
+            notifyEmbed = discord.Embed(title="入室通知",timestamp=datetime.now())
             text = f"{now}: {member.name} が {after.channel}　に参加しました"
 
 
