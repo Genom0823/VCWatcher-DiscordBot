@@ -27,7 +27,8 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(member, before, after):
-    print("update!!")
+    if before.channel != after.channel:
+        print("{menber.name} join {after.channel}")
 
 
 client.run(TOKEN)
