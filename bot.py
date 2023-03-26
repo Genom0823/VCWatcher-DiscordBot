@@ -24,7 +24,7 @@ async def on_voice_state_update(member, before, after):
         # get notify channel
         notifyChannel = discord.utils.get(notifyGuild.text_channels, name="vc-notify")
 
-        now = datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')
+        now = datetime.now().strftime('%Y.%m.%d %H:%M:%S')
         
         if after.channel != None:
 
@@ -33,7 +33,7 @@ async def on_voice_state_update(member, before, after):
 
         elif after.channel == None:
 
-            await notifyChannel.send(f"{now}: {member.name} が {after.channel}　から退室しました")
+            await notifyChannel.send(f"{now}: {member.name} が {before.channel}　から退室しました")
 
 
 @client.event
