@@ -15,12 +15,19 @@ async def on_ready():
 
     for guild in client.guilds:
         try:
-            print(f"{guild.member_count} menbers is in {guild.name} now")
-            channel = discord.utils.get(client.guilds, name="d")
+            # debug
+            #print(f"{guild.member_count} menbers is in {guild.name} now")
+
+            channel = discord.utils.get(guild.text_channels, name="d")
             await channel.send("Hello!!")
 
         except:
             print("no exist channel")
+
+
+@client.event
+async def on_voice_state_update(member, before, after):
+    print("update!!")
 
 
 client.run(TOKEN)
