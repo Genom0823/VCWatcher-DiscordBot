@@ -28,12 +28,16 @@ async def on_voice_state_update(member, before, after):
         
         if after.channel != None:
 
-            await notifyChannel.send(f"{now}: {member.name} が {after.channel}　に参加しました")
-            #print(f"{member.name} が {after.channel}　に参加しました")
+            notifyEmbed = discord.Embed(timestamp=datetime.now())
+            text = f"{now}: {member.name} が {after.channel}　に参加しました"
+
 
         elif after.channel == None:
 
-            await notifyChannel.send(f"{now}: {member.name} が {before.channel}　から退室しました")
+            text = f"{now}: {member.name} が {before.channel}　から退室しました"
+        
+
+        await notifyChannel.send(notifyEmbed)
 
 
 @client.event
