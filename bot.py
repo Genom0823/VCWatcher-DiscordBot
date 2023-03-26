@@ -27,7 +27,7 @@ async def on_voice_state_update(member, before, after):
     if before.channel != after.channel:
         notifyGuild = member.guild
         notifyChannel = discord.utils.get(notifyGuild.text_channels, name="vc-notify")
-        await notifyChannel(f"{member.name} join {after.channel}")
+        await notifyChannel.send(f"{member.name} join {after.channel}")
         print(f"{member.name} join {after.channel}")
 
 
