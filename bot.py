@@ -24,20 +24,22 @@ async def on_voice_state_update(member, before, after):
         # get notify channel
         notifyChannel = discord.utils.get(notifyGuild.text_channels, name="vc-notify")
 
-        now = datetime.now().strftime('%Y.%m.%d %H:%M:%S')
+        now = datetime.now().strftime('%m月%d日 %H時%M分')
         
         if after.channel != None:
 
-            notifyEmbed = discord.Embed(title="入室通知", color=0x00ff00, timestamp=datetime.now())
-            notifyEmbed.add_field(name = "日時", value = now)
             text = f"{now}: {member.name} が {after.channel}　に参加しました"
+            notifyEmbed = discord.Embed( title="入室通知", color=0x00ff00, description=text )
+            notifyEmbed.add_field( name = "日時", value = now )
 
 
         elif after.channel == None:
 
             text = f"{now}: {member.name} が {before.channel}　から退室しました"
+            notifyEmbed = discord.Embed( title="退室通知", color=0xff0000, description=text )
+            notifyEmbed.add_field( name = "日時", value = now )
+            
         
-
         await notifyChannel.send(embed = notifyEmbed)
 
 
