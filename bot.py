@@ -1,6 +1,7 @@
 # python3
 
 import discord
+from datetime import datetime
 
 import cogs.channel as ch
 
@@ -10,25 +11,29 @@ client = discord.Client(intents = intents)
 
 @client.event
 async def on_ready():
-
     await client.wait_until_ready()
-
-    for guild in client.guilds:
-        try:
-            channel = discord.utils.get(guild.text_channels, name="d")
-            await channel.send("Hello!!")
-
-        except:
-            print("no exist channel")
+    print('起動しました')
 
 
 @client.event
 async def on_voice_state_update(member, before, after):
-    if (before.channel != after.channel) and (after.channel != None) and (member.status == discord.Status.online):
+    if (before.channel != after.channel) and (member.status == discord.Status.online):
+        
+        # get guild
         notifyGuild = member.guild
+        # get notify channel
         notifyChannel = discord.utils.get(notifyGuild.text_channels, name="vc-notify")
-        await notifyChannel.send(f"{member.name} join {after.channel}")
-        print(f"{member.name} が {after.channel}　に参加しました")
+
+        now = datetime.now().strftime('%Y年%m月%d日 %H:%M:%S')
+        
+        if after.channel != None:
+
+            await notifyChannel.send(f"{now}: {member.name} が {after.channel}　に参加しました")
+            #print(f"{member.name} が {after.channel}　に参加しました")
+
+        elif after.channel == None:
+
+            await notifyChannel.send(f"{now}: {member.name} が {after.channel}　から退室しました")
 
 
 @client.event
