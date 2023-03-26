@@ -28,7 +28,7 @@ async def on_voice_state_update(member, before, after):
         
         if after.channel != None:
 
-            text = f"{member.name} が {after.channel}に入室しました"
+            text = f"{member.avatar}{member.name} が {after.channel}に入室しました"
             notifyEmbed = discord.Embed( title="入室通知", color=0x00ff00, description=text )
             notifyEmbed.add_field( name = "日時", value = now )
             notifyEmbed.set_author(name=member.name, icon_url=member.avatar)
