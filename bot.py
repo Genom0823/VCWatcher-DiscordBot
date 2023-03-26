@@ -4,7 +4,7 @@ import discord
 
 import cogs.channel as ch
 
-intents = discord.Intents.default()
+intents = discord.Intents.all()
 intents.message_content = True
 client = discord.Client(intents = intents)
 
@@ -24,11 +24,11 @@ async def on_ready():
 
 @client.event
 async def on_voice_state_update(member, before, after):
-    if (before.channel != after.channel) and (after.channel != None):
+    if (before.channel != after.channel) and (after.channel != None) and (member.status == discord.Status.online):
         notifyGuild = member.guild
         notifyChannel = discord.utils.get(notifyGuild.text_channels, name="vc-notify")
         await notifyChannel.send(f"{member.name} join {after.channel}")
-        print(f"{member.name} join {after.channel}")
+        print(f"{member.name} が {after.channel}　に参加しました")
 
 
 @client.event
