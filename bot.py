@@ -31,10 +31,10 @@ async def on_voice_state_update(member, before, after):
 
 @client.event
 async def on_guild_join(guild):
-    notifyChannel = discord.utils.get(guild.text_channels, name="VC-Notify")
+    notifyChannel = discord.utils.get(guild.text_channels, name="vc-notify")
 
     if notifyChannel == None:
-        notifyChannel = await guild.create_text_channel("VC-Notify")
+        notifyChannel = await guild.create_text_channel("vc-notify")
         notifyCategory = await guild.create_category("Notify")
 
         await notifyChannel.edit(categoty = notifyCategory)
