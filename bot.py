@@ -33,9 +33,6 @@ async def on_voice_state_update(member, before, after):
             if member.id == 873217212842913812:
                 text = f"{member.name} が 『{after.channel}』 に入ってきやがった。はよ出て行けや。"
 
-            if member.id == 695857241823379547:
-                text = f"{member.name} が 『{after.channel}』 に入ってきやがった。はよ出て行けや。"
-
             notify_embed = discord.Embed(
                 title="入室通知", 
                 color=0xabdab5, 
