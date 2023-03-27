@@ -30,10 +30,10 @@ async def on_voice_state_update(member, before, after):
 
             text = f"{member.name} が 『{after.channel}』 に入室しました"
 
-            if member.name == "nasu":
+            if member.id == 873217212842913812:
                 text = f"{member.name} が 『{after.channel}』 に入ってきやがった。はよ出て行けや。"
 
-            if member.id == "Geno_August#4341":
+            if member.id == 695857241823379547:
                 text = f"{member.name} が 『{after.channel}』 に入ってきやがった。はよ出て行けや。"
 
             notify_embed = discord.Embed(
@@ -50,7 +50,7 @@ async def on_voice_state_update(member, before, after):
 
             text = f"{member.name} が 『{before.channel}』 から退室しました"
 
-            if member.name == "nasu":
+            if member.id == 873217212842913812:
                 text = f"{member.name} が 『{before.channel}』 から出ていった。一生入ってくんな。"
 
             notify_embed = discord.Embed(
