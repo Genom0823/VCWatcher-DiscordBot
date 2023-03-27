@@ -3,7 +3,7 @@
 import discord
 from datetime import datetime
 
-import cogs.channel as ch
+#import cogs.channel as ch
 
 intents = discord.Intents.all()
 intents.message_content = True
@@ -11,7 +11,7 @@ client = discord.Client(intents = intents)
 
 @client.event
 async def on_ready():
-    
+
     await client.wait_until_ready()
     print('起動しました')
 
@@ -22,40 +22,50 @@ async def on_voice_state_update(member, before, after):
     if (before.channel != after.channel) and (member.status == discord.Status.online):
         
         # get guild
-        notifyGuild = member.guild
+        notify_guild = member.guild
         # get notify channel
-        notifyChannel = discord.utils.get(notifyGuild.text_channels, name="vc-notify")
-
-        now = datetime.now().strftime('%m月%d日 %H時%M分')
-
+        notify_channel = discord.utils.get(notify_guild.text_channels, name="vc-notify")
         
         if after.channel != None:
 
             text = f"{member.name} が {after.channel}に入室しました"
-            notifyEmbed = discord.Embed(title="入室通知", color=0xabdab5, description=text, timestamp=datetime.now())
-            notifyEmbed.set_thumbnail(url=member.avatar)
 
+            notify_embed = discord.Embed(
+                title="入室通知", 
+                color=0xabdab5, 
+                description=text, 
+                timestamp=datetime.now()
+                )
+            
+            notify_embed.set_thumbnail(url=member.avatar)
 
         elif after.channel == None:
 
             text = f"{member.name} が {before.channel}から退室しました"
-            notifyEmbed = discord.Embed(title="退室通知", color=0xf28b82, description=text, timestamp=datetime.now())
-            notifyEmbed.set_thumbnail(url=member.avatar)
+
+            notify_embed = discord.Embed(
+                title="退室通知", 
+                color=0xf28b82, 
+                description=text, 
+                timestamp=datetime.now()
+                )
+            
+            notify_embed.set_thumbnail(url=member.avatar)
 
         
-        await notifyChannel.send(embed = notifyEmbed)
+        await notify_channel.send(embed = notify_embed)
 
 
 @client.event
 async def on_guild_join(guild):
 
-    notifyChannel = discord.utils.get(guild.text_channels, name="vc-notify")
+    notify_channel = discord.utils.get(guild.text_channels, name="vc-notify")
 
     
     # create notify channel
-    if notifyChannel == None:
-        notifyCategory = await guild.create_category("Notify")
-        notifyChannel = await guild.create_text_channel("vc-notify", category = notifyCategory)
+    if notify_channel == None:
+        notify_category = await guild.create_category("Notify")
+        notify_channel = await guild.create_text_channel("vc-notify", category = notify_category)
 
 
 client.run(TOKEN)
