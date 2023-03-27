@@ -43,6 +43,7 @@ async def on_voice_state_update(member, before, after):
                 timestamp=datetime.now()
                 )
             
+            print(f"{member.id}")
             notify_embed.set_thumbnail(url=member.avatar)
 
         elif after.channel == None:
