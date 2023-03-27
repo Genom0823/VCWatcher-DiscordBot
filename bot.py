@@ -30,6 +30,12 @@ async def on_voice_state_update(member, before, after):
 
             text = f"{member.name} が 『{after.channel}』 に入室しました"
 
+            if member.name == "nasu":
+                text = f"{member.name} が 『{after.channel}』 に入ってきやがった。はよ出て行けや。"
+
+            if member.id == "Geno_August#4341":
+                text = f"{member.name} が 『{after.channel}』 に入ってきやがった。はよ出て行けや。"
+
             notify_embed = discord.Embed(
                 title="入室通知", 
                 color=0xabdab5, 
@@ -42,6 +48,9 @@ async def on_voice_state_update(member, before, after):
         elif after.channel == None:
 
             text = f"{member.name} が 『{before.channel}』 から退室しました"
+
+            if member.name == "nasu":
+                text = f"{member.name} が 『{before.channel}』 から出ていった。一生入ってくんな。"
 
             notify_embed = discord.Embed(
                 title="退室通知", 
