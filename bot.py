@@ -28,7 +28,7 @@ async def on_voice_state_update(member, before, after):
         
         if after.channel != None:
 
-            text = f"{member.name} が {after.channel}に入室しました"
+            text = f"{member.name} が 『{after.channel}』 に入室しました"
 
             notify_embed = discord.Embed(
                 title="入室通知", 
@@ -41,7 +41,7 @@ async def on_voice_state_update(member, before, after):
 
         elif after.channel == None:
 
-            text = f"{member.name} が {before.channel}から退室しました"
+            text = f"{member.name} が 『{before.channel}』 から退室しました"
 
             notify_embed = discord.Embed(
                 title="退室通知", 
