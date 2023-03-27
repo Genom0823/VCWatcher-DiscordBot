@@ -71,8 +71,10 @@ async def on_guild_join(guild):
 @client.event
 async def on_presence_update(before, after):
 
-    if before.activity == None:
+    if after.activity != None:
+        activity_guild = after.guild
+        activity_channel = discord.utils.get(activity_guild.text_channels, name="vc-notify")
         print(f'{after.activity}')
-        
+
 
 client.run(TOKEN)
