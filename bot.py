@@ -68,4 +68,11 @@ async def on_guild_join(guild):
         notify_channel = await guild.create_text_channel("vc-notify", category = notify_category)
 
 
+@client.event
+async def on_presence_update(before, after):
+
+    if before.activity == None:
+        print(f'{after.activity}')
+        
+
 client.run(TOKEN)
